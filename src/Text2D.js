@@ -1,4 +1,4 @@
-var textAlign = require('./').textAlign
+var textAlign = require('./textAlign')
   , CanvasText = require('./CanvasText')
 
 class Text2D extends THREE.Object3D {
@@ -55,8 +55,6 @@ class Text2D extends THREE.Object3D {
 
   updateText() {
     this.cleanUp() // cleanup previous texture
-
-    console.log(this._text, "font:",this._font, "fillStyle:", this._fillStyle)
 
     this.canvas.drawText(this._text, {
       font: this._font,

@@ -1,4 +1,4 @@
-var textAlign = require('./').textAlign
+var textAlign = require('./textAlign')
   , CanvasText = require('./CanvasText')
 
 class SpriteText2D extends THREE.Object3D {

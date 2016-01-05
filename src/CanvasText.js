@@ -28,7 +28,6 @@ class CanvasText {
     this.ctx.fillStyle = ctxOptions.fillStyle
     this.ctx.textAlign = 'left';
     this.ctx.textBaseline = 'top';
-    console.log(text, this.ctx.font, this.ctx.fillStyle, this.textWidth, this.textHeight, this.canvas.width, this.canvas.height)
 
     this.ctx.fillText(text, 0, 0);
 
