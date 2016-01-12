@@ -35,7 +35,6 @@ var CanvasText = (function () {
       this.ctx.fillStyle = ctxOptions.fillStyle;
       this.ctx.textAlign = 'left';
       this.ctx.textBaseline = 'top';
-      console.log(text, this.ctx.font, this.ctx.fillStyle, this.textWidth, this.textHeight, this.canvas.width, this.canvas.height);
 
       this.ctx.fillText(text, 0, 0);
 
@@ -91,7 +90,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var textAlign = require('./').textAlign,
+var textAlign = require('./textAlign'),
     CanvasText = require('./CanvasText');
 
 var SpriteText2D = (function (_THREE$Object3D) {
@@ -207,7 +206,7 @@ var SpriteText2D = (function (_THREE$Object3D) {
 
 module.exports = SpriteText2D;
 
-},{"./":4,"./CanvasText":1}],3:[function(require,module,exports){
+},{"./CanvasText":1,"./textAlign":5}],3:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -220,7 +219,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var textAlign = require('./').textAlign,
+var textAlign = require('./textAlign'),
     CanvasText = require('./CanvasText');
 
 var Text2D = (function (_THREE$Object3D) {
@@ -253,8 +252,6 @@ var Text2D = (function (_THREE$Object3D) {
     key: 'updateText',
     value: function updateText() {
       this.cleanUp(); // cleanup previous texture
-
-      console.log(this._text, "font:", this._font, "fillStyle:", this._fillStyle);
 
       this.canvas.drawText(this._text, {
         font: this._font,
@@ -343,13 +340,17 @@ var Text2D = (function (_THREE$Object3D) {
 
 module.exports = Text2D;
 
-},{"./":4,"./CanvasText":1}],4:[function(require,module,exports){
+},{"./CanvasText":1,"./textAlign":5}],4:[function(require,module,exports){
 'use strict';
 
 module.exports.SpriteText2D = require('./SpriteText2D');
 module.exports.Text2D = require('./Text2D');
+module.exports.textAlign = require('./textAlign');
 
-module.exports.textAlign = {
+},{"./SpriteText2D":2,"./Text2D":3,"./textAlign":5}],5:[function(require,module,exports){
+"use strict";
+
+module.exports = {
   center: new THREE.Vector2(0, 0),
   left: new THREE.Vector2(1, 0),
   topLeft: new THREE.Vector2(1, -1),
@@ -359,5 +360,5 @@ module.exports.textAlign = {
   bottomRight: new THREE.Vector2(-1, 1)
 };
 
-},{"./SpriteText2D":2,"./Text2D":3}]},{},[4])(4)
+},{}]},{},[4])(4)
 });
