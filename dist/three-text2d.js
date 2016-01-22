@@ -149,12 +149,6 @@ var SpriteText2D = (function (_THREE$Object3D) {
 
       this.sprite.position.x = this.canvas.width / 2 - this.canvas.textWidth / 2 + this.canvas.textWidth / 2 * this.align.x;
       this.sprite.position.y = -this.canvas.height / 2 + this.canvas.textHeight / 2 * this.align.y;
-
-      window.sprite = this;
-
-      // this.sprite.scale.x =
-      // this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
-      // this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
     }
   }, {
     key: 'cleanUp',
@@ -170,6 +164,16 @@ var SpriteText2D = (function (_THREE$Object3D) {
         this.texture.magFilter = THREE.NearestFilter;
         this.texture.minFilter = THREE.LinearMipMapLinearFilter;
       }
+    }
+  }, {
+    key: 'width',
+    get: function get() {
+      return this.canvas.textWidth;
+    }
+  }, {
+    key: 'height',
+    get: function get() {
+      return this.canvas.textHeight;
     }
   }, {
     key: 'text',
@@ -304,6 +308,16 @@ var Text2D = (function (_THREE$Object3D) {
         this.texture.magFilter = THREE.NearestFilter;
         this.texture.minFilter = THREE.LinearMipMapLinearFilter;
       }
+    }
+  }, {
+    key: 'width',
+    get: function get() {
+      return this.canvas.textWidth;
+    }
+  }, {
+    key: 'height',
+    get: function get() {
+      return this.canvas.textHeight;
     }
   }, {
     key: 'text',
