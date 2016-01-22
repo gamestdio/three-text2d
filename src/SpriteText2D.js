@@ -19,6 +19,9 @@ class SpriteText2D extends THREE.Object3D {
     this.text = text;
   }
 
+  get width () { return this.canvas.textWidth }
+  get height () { return this.canvas.textHeight }
+
   get text() {
     return this._text;
   }
@@ -82,13 +85,6 @@ class SpriteText2D extends THREE.Object3D {
 
     this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
     this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
-
-    window.sprite = this
-
-    // this.sprite.scale.x =
-    // this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
-    // this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
-
   }
 
   cleanUp () {

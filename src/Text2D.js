@@ -20,6 +20,9 @@ class Text2D extends THREE.Object3D {
     this.text = text;
   }
 
+  get width () { return this.canvas.textWidth }
+  get height () { return this.canvas.textHeight }
+
   get text() {
     return this._text;
   }

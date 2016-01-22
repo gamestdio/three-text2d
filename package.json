@@ -1,6 +1,6 @@
 {
   "name": "three-text2d",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Render texture from canvas into THREE's Mesh or Sprite.",
   "author": "Endel Dreyer <endel.dreyer@gmail.com>",
   "keywords": [
