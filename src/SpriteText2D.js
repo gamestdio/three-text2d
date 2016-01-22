@@ -78,6 +78,11 @@ class SpriteText2D extends THREE.Object3D {
       this.add(this.sprite)
     }
 
+    this.sprite.scale.set(this.canvas.width, this.canvas.height, 1)
+
+    this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
+    this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
+
     window.sprite = this
 
     // this.sprite.scale.x =

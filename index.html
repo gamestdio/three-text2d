@@ -13,6 +13,7 @@
       var WIDTH = window.innerWidth , HEIGHT = window.innerHeight
 
       var Text2D = THREE_Text.Text2D;
+      var SpriteText2D = THREE_Text.SpriteText2D;
       var textAlign = THREE_Text.textAlign;
 
       function Application (container) {
@@ -34,27 +35,37 @@
         this.scene = new THREE.Scene();
 
         this.text = new Text2D("CENTER", { align: textAlign.center,  font: '30px Arial', fillStyle: '#000000' , antialias: false })
+        this.text.material.alphaTest = 0.1
         this.text.position.set(0,0,0)
         this.text.scale.set(1.5,1.5,1.5)
         this.scene.add(this.text)
 
         this.text2 = new Text2D("LEFT", { align: textAlign.left, font: '30px Arial', fillStyle: '#000000', antialias: false })
+        this.text2.material.alphaTest = 0.1
         this.text2.position.set(0,100,0)
         this.text2.scale.set(1.5,1.5,1.5)
         this.scene.add(this.text2)
 
         this.text3 = new Text2D("RIGHT", { align: textAlign.right, font: '30px Arial', fillStyle: '#000000', antialias: true })
+        this.text3.material.alphaTest = 0.1
         this.text3.position.set(0,-100,0)
         this.text3.scale.set(1.5,1.5,1.5)
         this.scene.add(this.text3)
 
-        // var i = 0
-        // setInterval(() => {
-        //   this.text.text = "CENTER" + i
-        //   this.text2.text = "LEFT" + i
-        //   this.text3.text = "RIGHT" + i
-        //   i++
-        // }, 1000)
+        this.sprite = new SpriteText2D("SPRITE", { align: textAlign.center, font: '30px Arial', fillStyle: '#000000', antialias: true })
+        this.sprite.position.set(0, -200, 0)
+        this.sprite.scale.set(1.5, 1.5, 1.5)
+        this.sprite.material.alphaTest = 0.1
+        this.scene.add(this.sprite)
+
+        var i = 0
+        setInterval(() => {
+          this.text.text = "CENTER" + i
+          this.text2.text = "LEFT" + i
+          this.text3.text = "RIGHT" + i
+          this.sprite.text = "SPRITE " + i
+          i++
+        }, 50)
 
         window.addEventListener('resize', this.onResize.bind(this))
       }

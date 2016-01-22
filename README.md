@@ -3,8 +3,6 @@ three-text2d
 
 Render texture from canvas into THREE's Mesh or Sprite.
 
-TODO: Fix sprite scale and alignment.
-
 Usage
 ---
 
