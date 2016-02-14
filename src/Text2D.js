@@ -17,7 +17,7 @@ class Text2D extends THREE.Object3D {
     // this._textAlign = options.align || "center"
     // this.anchor = Label.fontAlignAnchor[ this._textAlign ]
     this.antialias = typeof(options.antialias==="undefined") ? true : options.antialias
-    this.text = text;
+    this._text = text;
   }
 
   get width () { return this.canvas.textWidth }
