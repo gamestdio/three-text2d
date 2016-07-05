@@ -1,9 +1,8 @@
 <html>
   <head>
     <title>three-text2d example</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
-    <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script src="dist/three-text2d.js"></script>
+    <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
 
     <style type="text/css">* {margin:0; padding: 0;}</style>
   </head>
@@ -15,6 +14,9 @@
       var Text2D = THREE_Text.Text2D;
       var SpriteText2D = THREE_Text.SpriteText2D;
       var textAlign = THREE_Text.textAlign;
+
+      var raycaster = new THREE.Raycaster();
+      var mouse = new THREE.Vector2();
 
       function Application (container) {
         this.container = container;
@@ -67,7 +69,8 @@
           i++
         }, 50)
 
-        window.addEventListener('resize', this.onResize.bind(this))
+        window.addEventListener('resize', this.onResize.bind(this), false)
+        window.addEventListener('mousemove', this.onMouseMove.bind(this), false)
       }
 
       Application.prototype.onResize = function (e) {
@@ -79,10 +82,27 @@
         this.camera.updateProjectionMatrix()
       }
 
+      Application.prototype.onMouseMove = function (event) {
+        mouse.x = ( event.clientX / window.innerWidth  ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight  ) * 2 + 1;
+      }
+
       Application.prototype.loop = function () {
         this.text.rotation.y += 0.010
         this.text2.rotation.y += 0.015
         this.text3.rotation.y += 0.02
+
+        // update the picking ray with the camera and mouse position
+        raycaster.setFromCamera( mouse, this.camera );
+
+        // calculate objects intersecting the picking ray
+        var intersects = raycaster.intersectObjects( this.scene.children );
+        // console.log("intersects:", intersects)
+
+        for ( var i = 0; i < intersects.length; i++ ) {
+          console.log("found:", intersects[ i ].object)
+          // intersects[ i ].object.material.color.set( 0xff0000 );
+        }
 
         this.renderer.render(this.scene, this.camera)
         requestAnimationFrame(this.loop.bind(this))

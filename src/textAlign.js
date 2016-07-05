@@ -1,3 +1,5 @@
+const THREE = require('three');
+
 module.exports = {
   center: new THREE.Vector2(0, 0),
   left: new THREE.Vector2(1, 0),

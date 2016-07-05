@@ -1,3 +1,5 @@
+const THREE = require('three');
+
 var fontHeightCache = {}
 
 class CanvasText {

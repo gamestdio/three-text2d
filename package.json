@@ -1,6 +1,6 @@
 {
   "name": "three-text2d",
-  "version": "0.2.2",
+  "version": "0.2.3-rc1",
   "description": "Render texture from canvas into THREE's Mesh or Sprite.",
   "author": "Endel Dreyer <endel.dreyer@gmail.com>",
   "keywords": [
@@ -15,18 +15,23 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "dist": "./node_modules/browserify/bin/cmd.js src/index.js -t babelify -s THREE_Text -o dist/three-text2d.js && ./node_modules/browserify/bin/cmd.js src/index.js -t babelify -t uglifyify -s THREE_Text -o dist/three-text2d.min.js",
-    "watch": "babel src -d lib -w",
-    "watch-dist": "./node_modules/watchify/bin/cmd.js src/index.js -t babelify -s THREE_Text -o dist/three-text2d.js -v",
+    "dist": "./node_modules/browserify/bin/cmd.js src/index.js -t babelify -s THREE_Text -o dist/three-text2d.js",
     "prepublish": "babel src -d lib"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "three": "*"
+  },
   "devDependencies": {
-    "babel-cli": "^6.1.2",
-    "babel-preset-es2015": "^6.1.2",
-    "babelify": "^7.2.0",
-    "browserify": "^12.0.1",
-    "uglifyify": "^3.0.1",
-    "watchify": "^3.7.0"
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "three": "*"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }

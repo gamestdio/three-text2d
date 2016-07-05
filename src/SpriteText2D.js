@@ -1,3 +1,5 @@
+const THREE = require('three');
+
 var textAlign = require('./textAlign')
   , CanvasText = require('./CanvasText')
 
@@ -17,6 +19,11 @@ class SpriteText2D extends THREE.Object3D {
     // this.anchor = Label.fontAlignAnchor[ this._textAlign ]
     this.antialias = typeof(options.antialias==="undefined") ? true : options.antialias
     this.text = text;
+  }
+
+  // delegate raycast method to mesh instance
+  raycast () {
+    return this.sprite.raycast.apply(this.sprite, arguments)
   }
 
   get width () { return this.canvas.textWidth }
