@@ -1,8 +1,15 @@
-const THREE = require('three');
+import THREE = require("three");
 
-var fontHeightCache = {}
+import { TextOptions } from "./Text2D";
+import { getFontHeight } from "./utils";
 
-class CanvasText {
+export class CanvasText {
+
+  public textWidth: number;
+  public textHeight: number;
+
+  public canvas: HTMLCanvasElement;
+  public ctx: CanvasRenderingContext2D;
 
   constructor () {
     this.textWidth = null
@@ -15,7 +22,7 @@ class CanvasText {
   get width () { return this.canvas.width }
   get height () { return this.canvas.height }
 
-  drawText (text, ctxOptions) {
+  drawText (text: string, ctxOptions: TextOptions) {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.font = ctxOptions.font
@@ -37,26 +44,3 @@ class CanvasText {
   }
 
 }
-
-function getFontHeight (fontStyle) {
-  var result = fontHeightCache[fontStyle];
-
-  if (!result)
-  {
-    var body = document.getElementsByTagName('body')[0];
-    var dummy = document.createElement('div');
-
-    var dummyText = document.createTextNode('MÉq');
-    dummy.appendChild(dummyText);
-    dummy.setAttribute('style', 'font:' + fontStyle + ';position:absolute;top:0;left:0');
-    body.appendChild(dummy);
-    result = dummy.offsetHeight;
-
-    fontHeightCache[fontStyle] = result;
-    body.removeChild(dummy);
-  }
-
-  return result;
-}
-
-module.exports = CanvasText

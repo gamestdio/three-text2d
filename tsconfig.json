@@ -1,0 +1,15 @@
+{
+  "baseDir": "src/",
+  "compilerOptions": {
+    "outDir": "lib",
+    "target": "ES5",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "sourceMap": false
+  },
+  "exclude": [
+    "node_modules",
+    "test",
+    "lib"
+  ]
+}

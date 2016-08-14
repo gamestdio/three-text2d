@@ -9,9 +9,9 @@ Usage
 **Mesh**
 
 ```javascript
-import { Text2D, textAlign } from 'three-text2d'
+import { MeshText2D, textAlign } from 'three-text2d'
 
-var text = new Text2D("RIGHT", { align: textAlign.right, font: '30px Arial', fillStyle: '#000000', antialias: true })
+var text = new MeshText2D("RIGHT", { align: textAlign.right, font: '30px Arial', fillStyle: '#000000', antialias: true })
 scene.add(text)
 ```
 
