@@ -19,7 +19,7 @@
     "start": "webpack-dev-server",
     "dist": "npm run dist-dev && npm run dist-prod",
     "dist-dev": "webpack --config webpack.dist.config.js",
-    "dist-prod": "webpack --config webpack.dist.config.js --optimize-minimize --output-file dist/three-text2d.min.js",
+    "dist-prod": "webpack --config webpack.dist.config.js --optimize-minimize --output-file three-text2d.min.js",
     "prepublish": "tsc -d"
   },
   "license": "MIT",
