@@ -7,11 +7,11 @@ module.exports = {
     contentBase: "./example"
   },
   resolve: {
-    extensions: ['', '.webpack.js', '.ts', '.js']
+    extensions: ['.webpack.js', '.ts', '.js']
   },
   module: {
     loaders: [
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
+      { test: /\.tsx?$/, loader: 'ts-loader' }
     ]
   }
 }

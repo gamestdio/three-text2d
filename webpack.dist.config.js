@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-
   entry: './src/index.ts',
 
   output: {
@@ -11,12 +10,12 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.ts', '.js']
+    extensions: ['.webpack.js', '.ts', '.js']
   },
 
   module: {
     loaders: [
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      { test: /\.ts?$/, loader: 'ts-loader' },
     ]
   },
 
