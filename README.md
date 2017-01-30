@@ -1,6 +1,8 @@
 three-text2d
 ===
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/gamestdio/three-text2d.svg)](https://greenkeeper.io/)
+
 Render texture from canvas into THREE's Mesh or Sprite.
 
 Usage
