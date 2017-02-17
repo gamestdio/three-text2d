@@ -48,11 +48,25 @@ function Application (container) {
   this.text3.scale.set(1.5,1.5,1.5)
   this.scene.add(this.text3)
 
-  this.sprite = new SpriteText2D("SPRITE", { align: textAlign.center, font: '30px Arial', fillStyle: '#000000' })
+  this.sprite = new SpriteText2D("SPRITE", { align: textAlign.center, font: '30px Arial', fillStyle: '#000000'})
   this.sprite.position.set(0, -200, 0)
   this.sprite.scale.set(1.5, 1.5, 1.5)
   this.sprite.material.alphaTest = 0.1
   this.scene.add(this.sprite)
+
+  this.textShadow = new MeshText2D("SHADOW", { 
+    align: textAlign.center,  
+    font: '30px Arial', 
+    fillStyle: '#000000', 
+    shadowColor: 'black', 
+    shadowBlur: 3, 
+    shadowOffsetX: 2, 
+    shadowOffsetY: 3  
+  })
+  this.textShadow.material.alphaTest = 0.1
+  this.textShadow.position.set(0,200,0)
+  this.textShadow.scale.set(1.5,1.5,1.5)
+  this.scene.add(this.textShadow)
 
   var i = 0
   setInterval(() => {
@@ -60,6 +74,7 @@ function Application (container) {
     this.text2.text = "LEFT" + i
     this.text3.text = "RIGHT" + i
     this.sprite.text = "SPRITE " + i
+    this.textShadow.text = "SHADOW " + i
     i++
   }, 50)
 

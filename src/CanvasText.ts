@@ -37,7 +37,10 @@ export class CanvasText {
     this.ctx.fillStyle = ctxOptions.fillStyle
     this.ctx.textAlign = 'left';
     this.ctx.textBaseline = 'top';
-
+    this.ctx.shadowColor = ctxOptions.shadowColor;
+    this.ctx.shadowBlur = ctxOptions.shadowBlur;
+    this.ctx.shadowOffsetX = ctxOptions.shadowOffsetX;
+    this.ctx.shadowOffsetY = ctxOptions.shadowOffsetY;
     this.ctx.fillText(text, 0, 0);
 
     return this.canvas

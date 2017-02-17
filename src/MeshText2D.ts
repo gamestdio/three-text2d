@@ -20,7 +20,11 @@ export class MeshText2D extends Text2D {
 
     this.canvas.drawText(this._text, {
       font: this._font,
-      fillStyle: this._fillStyle
+      fillStyle: this._fillStyle,
+      shadowBlur: this._shadowBlur,
+      shadowColor: this._shadowColor,      
+      shadowOffsetX: this._shadowOffsetX,
+      shadowOffsetY: this._shadowOffsetY,
     })
 
     this.texture = new THREE.Texture(this.canvas.canvas);

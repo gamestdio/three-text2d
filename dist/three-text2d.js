@@ -68,13 +68,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 module.exports = THREE;
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -107,9 +107,9 @@ function getFontHeight(fontStyle) {
 exports.getFontHeight = getFontHeight;
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -129,6 +129,10 @@ var Text2D = (function (_super) {
         var _this = _super.call(this) || this;
         _this._font = options.font || '30px Arial';
         _this._fillStyle = options.fillStyle || '#FFFFFF';
+        _this._shadowColor = options.shadowColor || 'rgba(0, 0, 0, 0)';
+        _this._shadowBlur = options.shadowBlur || 0;
+        _this._shadowOffsetX = options.shadowOffsetX || 0;
+        _this._shadowOffsetY = options.shadowOffsetY || 0;
         _this.canvas = new CanvasText_1.CanvasText();
         _this.align = options.align || utils_1.textAlign.center;
         _this.side = options.side || THREE.DoubleSide;
@@ -198,9 +202,9 @@ var Text2D = (function (_super) {
 exports.Text2D = Text2D;
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -225,7 +229,11 @@ var MeshText2D = (function (_super) {
         this.cleanUp(); // cleanup previous texture
         this.canvas.drawText(this._text, {
             font: this._font,
-            fillStyle: this._fillStyle
+            fillStyle: this._fillStyle,
+            shadowBlur: this._shadowBlur,
+            shadowColor: this._shadowColor,
+            shadowOffsetX: this._shadowOffsetX,
+            shadowOffsetY: this._shadowOffsetY,
         });
         this.texture = new THREE.Texture(this.canvas.canvas);
         this.texture.needsUpdate = true;
@@ -256,9 +264,9 @@ var MeshText2D = (function (_super) {
 exports.MeshText2D = MeshText2D;
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -272,7 +280,7 @@ var Text2D_1 = __webpack_require__(2);
 var SpriteText2D = (function (_super) {
     __extends(SpriteText2D, _super);
     function SpriteText2D() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     SpriteText2D.prototype.raycast = function () {
         return this.sprite.raycast.apply(this.sprite, arguments);
@@ -307,9 +315,9 @@ var SpriteText2D = (function (_super) {
 exports.SpriteText2D = SpriteText2D;
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -343,6 +351,10 @@ var CanvasText = (function () {
         this.ctx.fillStyle = ctxOptions.fillStyle;
         this.ctx.textAlign = 'left';
         this.ctx.textBaseline = 'top';
+        this.ctx.shadowColor = ctxOptions.shadowColor;
+        this.ctx.shadowBlur = ctxOptions.shadowBlur;
+        this.ctx.shadowOffsetX = ctxOptions.shadowOffsetX;
+        this.ctx.shadowOffsetY = ctxOptions.shadowOffsetY;
         this.ctx.fillText(text, 0, 0);
         return this.canvas;
     };
@@ -351,9 +363,9 @@ var CanvasText = (function () {
 exports.CanvasText = CanvasText;
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -365,5 +377,5 @@ var utils_1 = __webpack_require__(1);
 exports.textAlign = utils_1.textAlign;
 
 
-/***/ }
+/***/ })
 /******/ ]);

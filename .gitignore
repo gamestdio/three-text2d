@@ -1,3 +1,5 @@
 node_modules
 example/bundle.js
 typings
+lib
+.vscode/
