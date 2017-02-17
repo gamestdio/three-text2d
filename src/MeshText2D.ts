@@ -22,7 +22,7 @@ export class MeshText2D extends Text2D {
       font: this._font,
       fillStyle: this._fillStyle,
       shadowBlur: this._shadowBlur,
-      shadowColor: this._shadowColor,      
+      shadowColor: this._shadowColor,
       shadowOffsetX: this._shadowOffsetX,
       shadowOffsetY: this._shadowOffsetY,
     })

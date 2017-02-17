@@ -29,7 +29,7 @@ export abstract class Text2D extends THREE.Object3D {
   protected _shadowColor: string;
   protected _shadowBlur: number;
   protected _shadowOffsetX: number;
-  protected _shadowOffsetY: number;  
+  protected _shadowOffsetY: number;
 
   protected canvas: CanvasText;
   protected geometry: THREE.Geometry | THREE.BufferGeometry;
@@ -39,6 +39,7 @@ export abstract class Text2D extends THREE.Object3D {
 
     this._font = options.font || '30px Arial';
     this._fillStyle = options.fillStyle || '#FFFFFF';
+
     this._shadowColor = options.shadowColor || 'rgba(0, 0, 0, 0)';
     this._shadowBlur = options.shadowBlur || 0;
     this._shadowOffsetX = options.shadowOffsetX || 0;

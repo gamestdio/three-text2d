@@ -30,7 +30,15 @@ function Application (container) {
 
   this.scene = new THREE.Scene();
 
-  this.text = new MeshText2D("CENTER", { align: textAlign.center,  font: '30px Arial', fillStyle: '#000000' })
+  this.text = new MeshText2D("CENTER", {
+    align: textAlign.center,
+    font: '30px Arial',
+    fillStyle: '#000000',
+    shadowColor: 'rgba(0, 0, 0, 0.2)',
+    shadowBlur: 3,
+    shadowOffsetX: 2,
+    shadowOffsetY: 2
+  })
   this.text.material.alphaTest = 0.1
   this.text.position.set(0,0,0)
   this.text.scale.set(1.5,1.5,1.5)
@@ -54,27 +62,12 @@ function Application (container) {
   this.sprite.material.alphaTest = 0.1
   this.scene.add(this.sprite)
 
-  this.textShadow = new MeshText2D("SHADOW", { 
-    align: textAlign.center,  
-    font: '30px Arial', 
-    fillStyle: '#000000', 
-    shadowColor: 'black', 
-    shadowBlur: 3, 
-    shadowOffsetX: 2, 
-    shadowOffsetY: 3  
-  })
-  this.textShadow.material.alphaTest = 0.1
-  this.textShadow.position.set(0,200,0)
-  this.textShadow.scale.set(1.5,1.5,1.5)
-  this.scene.add(this.textShadow)
-
   var i = 0
   setInterval(() => {
     this.text.text = "CENTER" + i
     this.text2.text = "LEFT" + i
     this.text3.text = "RIGHT" + i
     this.sprite.text = "SPRITE " + i
-    this.textShadow.text = "SHADOW " + i
     i++
   }, 50)
 
