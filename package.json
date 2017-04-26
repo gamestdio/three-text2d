@@ -28,14 +28,12 @@
     "three": "*",
     "three-orbit-controls": "^72.0.0",
     "ts-loader": "^2.0.0",
-    "typescript": "^2.1.6"
+    "typescript": "^2.1.6",
+    "webpack": "^2.2.0-rc.2",
+    "webpack-dev-server": "^2.2.0-rc.0"
   },
   "peerDependencies": {
     "three": "*",
     "@types/three": "*"
-  },
-  "dependencies": {
-    "webpack": "^2.2.0-rc.2",
-    "webpack-dev-server": "^2.2.0-rc.0"
   }
 }
