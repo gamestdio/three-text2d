@@ -36,11 +36,6 @@ export class CanvasText {
     this.canvas.width = THREE.Math.nextPowerOfTwo(this.textWidth * 2)
     this.canvas.height = THREE.Math.nextPowerOfTwo(this.textHeight * 2)
 
-    // this.ctx.fillStyle = "red";
-    // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    // this.ctx.fillStyle = "blue";
-    // this.ctx.fillRect(0, 0, this.textWidth, this.textHeight);
-
     this.ctx.font = ctxOptions.font
     this.ctx.fillStyle = ctxOptions.fillStyle
     this.ctx.textAlign = 'left';

@@ -28,6 +28,7 @@ export declare abstract class Text2D extends THREE.Object3D {
     protected canvas: CanvasText;
     protected geometry: THREE.Geometry | THREE.BufferGeometry;
     constructor(text?: string, options?: TextOptions);
+    protected readonly textOptions: TextOptions;
     abstract raycast(): void;
     abstract updateText(): void;
     readonly width: number;
