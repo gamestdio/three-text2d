@@ -81,13 +81,13 @@ module.exports = THREE;
 Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 exports.textAlign = {
-    center: new THREE.Vector2(0, 0),
-    left: new THREE.Vector2(1, 0),
-    topLeft: new THREE.Vector2(1, -1),
-    topRight: new THREE.Vector2(-1, -1),
-    right: new THREE.Vector2(-1, 0),
-    bottomLeft: new THREE.Vector2(1, 1),
-    bottomRight: new THREE.Vector2(-1, 1),
+    center: new THREE.Vector2(0.5, 0.5),
+    left: new THREE.Vector2(1, 0.5),
+    topLeft: new THREE.Vector2(1, 1),
+    topRight: new THREE.Vector2(0, 1),
+    right: new THREE.Vector2(0, 0),
+    bottomLeft: new THREE.Vector2(0, 0),
+    bottomRight: new THREE.Vector2(0, 0),
 };
 var fontHeightCache = {};
 function getFontHeight(fontStyle) {
@@ -148,6 +148,23 @@ var Text2D = (function (_super) {
         _this.text = text;
         return _this;
     }
+    Object.defineProperty(Text2D.prototype, "textOptions", {
+        get: function () {
+            return {
+                font: this._font,
+                fillStyle: this._fillStyle,
+                align: this.align,
+                side: this.side,
+                antialias: this.antialias,
+                shadowBlur: this._shadowBlur,
+                shadowColor: this._shadowColor,
+                shadowOffsetX: this._shadowOffsetX,
+                shadowOffsetY: this._shadowOffsetY,
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Text2D.prototype, "width", {
         get: function () { return this.canvas.textWidth; },
         enumerable: true,
@@ -240,14 +257,7 @@ var MeshText2D = (function (_super) {
     };
     MeshText2D.prototype.updateText = function () {
         this.cleanUp(); // cleanup previous texture
-        this.canvas.drawText(this._text, {
-            font: this._font,
-            fillStyle: this._fillStyle,
-            shadowBlur: this._shadowBlur,
-            shadowColor: this._shadowColor,
-            shadowOffsetX: this._shadowOffsetX,
-            shadowOffsetY: this._shadowOffsetY,
-        });
+        this.canvas.drawText(this._text, this.textOptions);
         this.texture = new THREE.Texture(this.canvas.canvas);
         this.texture.needsUpdate = true;
         this.applyAntiAlias();
@@ -263,8 +273,6 @@ var MeshText2D = (function (_super) {
             this.mesh = new THREE.Mesh(this.geometry, this.material);
             this.add(this.mesh);
         }
-        this.mesh.position.x = ((this.canvas.width / 2) - (this.canvas.textWidth / 2)) + ((this.canvas.textWidth / 2) * this.align.x);
-        this.mesh.position.y = (-this.canvas.height / 2) + ((this.canvas.textHeight / 2) * this.align.y);
         // manually update geometry vertices
         this.geometry.vertices[0].x = this.geometry.vertices[2].x = -this.canvas.width / 2;
         this.geometry.vertices[1].x = this.geometry.vertices[3].x = this.canvas.width / 2;
@@ -305,10 +313,7 @@ var SpriteText2D = (function (_super) {
         return this.sprite.raycast.apply(this.sprite, arguments);
     };
     SpriteText2D.prototype.updateText = function () {
-        this.canvas.drawText(this._text, {
-            font: this._font,
-            fillStyle: this._fillStyle
-        });
+        this.canvas.drawText(this._text, this.textOptions);
         // cleanup previous texture
         this.cleanUp();
         this.texture = new THREE.Texture(this.canvas.canvas);
@@ -326,8 +331,6 @@ var SpriteText2D = (function (_super) {
             this.add(this.sprite);
         }
         this.sprite.scale.set(this.canvas.width, this.canvas.height, 1);
-        this.sprite.position.x = ((this.canvas.width / 2) - (this.canvas.textWidth / 2)) + ((this.canvas.textWidth / 2) * this.align.x);
-        this.sprite.position.y = (-this.canvas.height / 2) + ((this.canvas.textHeight / 2) * this.align.y);
     };
     return SpriteText2D;
 }(Text2D_1.Text2D));
@@ -365,8 +368,15 @@ var CanvasText = (function () {
         this.ctx.font = ctxOptions.font;
         this.textWidth = Math.ceil(this.ctx.measureText(text).width);
         this.textHeight = utils_1.getFontHeight(this.ctx.font);
-        this.canvas.width = THREE.Math.nextPowerOfTwo(this.textWidth);
-        this.canvas.height = THREE.Math.nextPowerOfTwo(this.textHeight);
+        // We use the size * 2 here because if the item wants to left align or
+        // right align, it needs to span the full right side of the canvas and
+        // leave the left side empty
+        this.canvas.width = THREE.Math.nextPowerOfTwo(this.textWidth * 2);
+        this.canvas.height = THREE.Math.nextPowerOfTwo(this.textHeight * 2);
+        // this.ctx.fillStyle = "red";
+        // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        // this.ctx.fillStyle = "blue";
+        // this.ctx.fillRect(0, 0, this.textWidth, this.textHeight);
         this.ctx.font = ctxOptions.font;
         this.ctx.fillStyle = ctxOptions.fillStyle;
         this.ctx.textAlign = 'left';
@@ -375,7 +385,11 @@ var CanvasText = (function () {
         this.ctx.shadowBlur = ctxOptions.shadowBlur;
         this.ctx.shadowOffsetX = ctxOptions.shadowOffsetX;
         this.ctx.shadowOffsetY = ctxOptions.shadowOffsetY;
-        this.ctx.fillText(text, 0, 0);
+        // Use (1 - align.x) so the alignment options are on a normal coordinate
+        // system from the top left
+        var xPos = (this.canvas.width / 2) - (this.textWidth * (1 - ctxOptions.align.x));
+        var yPos = (this.canvas.height / 2) - (this.textHeight * (1 - ctxOptions.align.y));
+        this.ctx.fillText(text, xPos, yPos);
         return this.canvas;
     };
     return CanvasText;
