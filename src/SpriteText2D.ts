@@ -1,9 +1,13 @@
 import THREE = require("three");
-import { Text2D } from "./Text2D";
+import { Text2D, AlignmentMethod } from "./Text2D";
 
 export class SpriteText2D extends Text2D{
 
   public sprite: THREE.Sprite;
+
+  get defaultAlignmentMethod(): AlignmentMethod {
+    return "texture";
+  }
 
   raycast () {
     return this.sprite.raycast.apply(this.sprite, arguments)
@@ -33,6 +37,11 @@ export class SpriteText2D extends Text2D{
     }
 
     this.sprite.scale.set(this.canvas.width, this.canvas.height, 1)
+
+    if (this.alignmentMethod == "child") {
+      this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
+      this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
+    }
   }
 
 }

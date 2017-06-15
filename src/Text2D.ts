@@ -3,10 +3,13 @@ import THREE = require("three");
 import { textAlign } from "./utils";
 import { CanvasText } from "./CanvasText";
 
+export type AlignmentMethod = "child" | "texture";
+
 export interface TextOptions {
   font?: string;
   fillStyle?: string;
   align?: THREE.Vector2;
+  alignmentMethod?: AlignmentMethod;
   side?: number;
   antialias?: boolean;
   shadowColor?: string;
@@ -18,6 +21,7 @@ export interface TextOptions {
 export abstract class Text2D extends THREE.Object3D {
 
   public align: THREE.Vector2;
+  public alignmentMethod: AlignmentMethod;
   public side: number;
   public antialias: boolean;
   public texture: THREE.Texture;
@@ -48,6 +52,7 @@ export abstract class Text2D extends THREE.Object3D {
     this.canvas = new CanvasText()
 
     this.align = options.align || textAlign.center
+    this.alignmentMethod = options.alignmentMethod || this.defaultAlignmentMethod;
     this.side = options.side || THREE.DoubleSide
 
     // this.anchor = Label.fontAlignAnchor[ this._textAlign ]
@@ -62,12 +67,15 @@ export abstract class Text2D extends THREE.Object3D {
       align: this.align,
       side: this.side,
       antialias: this.antialias,
+      alignmentMethod: this.alignmentMethod,
       shadowBlur: this._shadowBlur,
       shadowColor: this._shadowColor,
       shadowOffsetX: this._shadowOffsetX,
       shadowOffsetY: this._shadowOffsetY,
     };
   }
+
+  protected abstract get defaultAlignmentMethod(): AlignmentMethod;
 
   abstract raycast(): void;
   abstract updateText(): void;

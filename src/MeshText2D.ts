@@ -1,5 +1,5 @@
 import THREE = require("three");
-import { Text2D } from "./Text2D";
+import { Text2D, AlignmentMethod } from "./Text2D";
 
 export class MeshText2D extends Text2D {
 
@@ -9,6 +9,10 @@ export class MeshText2D extends Text2D {
 
   constructor(text = '', options = {}) {
     super(text, options);
+  }
+
+  get defaultAlignmentMethod(): AlignmentMethod {
+    return "child";
   }
 
   raycast (): void {
@@ -36,6 +40,11 @@ export class MeshText2D extends Text2D {
       this.geometry = new THREE.PlaneGeometry(this.canvas.width, this.canvas.height);
       this.mesh = new THREE.Mesh(this.geometry, this.material);
       this.add(this.mesh)
+    }
+
+    if (this.alignmentMethod == "child") {
+      this.mesh.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
+      this.mesh.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
     }
 
     // manually update geometry vertices

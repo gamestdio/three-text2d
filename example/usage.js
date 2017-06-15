@@ -39,13 +39,13 @@ function Application (container) {
     shadowOffsetX: 2,
     shadowOffsetY: 2
   })
-  text.position.set(0,0,0)
+  text.position.set(0,50,0)
 
   text = this.generateText("T LEFT", false, { align: textAlign.left })
-  text.position.set(0,100,0)
+  text.position.set(0,150,0)
 
-  text = this.generateText("T RIGHT", false, { align: textAlign.left })
-  text.position.set(0,200,0)
+  text = this.generateText("T RIGHT", false, { align: textAlign.right })
+  text.position.set(0,250,0)
 
   text = this.generateText("SPRITE", true, {
     align: textAlign.center,
@@ -54,13 +54,13 @@ function Application (container) {
     shadowOffsetX: 2,
     shadowOffsetY: 2
   })
-  text.position.set(0,300,0)
+  text.position.set(0,-50,0)
 
   text = this.generateText("S LEFT", true, { align: textAlign.left })
-  text.position.set(0,400,0)
+  text.position.set(0,-150,0)
 
   text = this.generateText("S RIGHT", true, { align: textAlign.right })
-  text.position.set(0,400,0)
+  text.position.set(0,-250,0)
 
   var i = 0
   setInterval(() => {
