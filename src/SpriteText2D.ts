@@ -10,10 +10,7 @@ export class SpriteText2D extends Text2D{
   }
 
   updateText() {
-    this.canvas.drawText(this._text, {
-      font: this._font,
-      fillStyle: this._fillStyle
-    })
+    this.canvas.drawText(this._text, this.textOptions)
 
     // cleanup previous texture
     this.cleanUp()
@@ -36,9 +33,6 @@ export class SpriteText2D extends Text2D{
     }
 
     this.sprite.scale.set(this.canvas.width, this.canvas.height, 1)
-
-    this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
-    this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
   }
 
 }

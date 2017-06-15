@@ -30,49 +30,62 @@ function Application (container) {
 
   this.scene = new THREE.Scene();
 
-  this.text = new MeshText2D("CENTER", {
+  this.texts = []
+
+  var text = this.generateText("TEXTURE", false, {
     align: textAlign.center,
-    font: '30px Arial',
-    fillStyle: '#000000',
     shadowColor: 'rgba(0, 0, 0, 0.2)',
     shadowBlur: 3,
     shadowOffsetX: 2,
     shadowOffsetY: 2
   })
-  this.text.material.alphaTest = 0.1
-  this.text.position.set(0,0,0)
-  this.text.scale.set(1.5,1.5,1.5)
-  this.scene.add(this.text)
+  text.position.set(0,0,0)
 
-  this.text2 = new MeshText2D("LEFT", { align: textAlign.left, font: '30px Arial', fillStyle: '#000000' })
-  this.text2.material.alphaTest = 0.1
-  this.text2.position.set(0,100,0)
-  this.text2.scale.set(1.5,1.5,1.5)
-  this.scene.add(this.text2)
+  text = this.generateText("T LEFT", false, { align: textAlign.left })
+  text.position.set(0,100,0)
 
-  this.text3 = new MeshText2D("RIGHT", { align: textAlign.right, font: '30px Arial', fillStyle: '#000000' })
-  this.text3.material.alphaTest = 0.1
-  this.text3.position.set(0,-100,0)
-  this.text3.scale.set(1.5,1.5,1.5)
-  this.scene.add(this.text3)
+  text = this.generateText("T RIGHT", false, { align: textAlign.left })
+  text.position.set(0,200,0)
 
-  this.sprite = new SpriteText2D("SPRITE", { align: textAlign.center, font: '30px Arial', fillStyle: '#000000'})
-  this.sprite.position.set(0, -200, 0)
-  this.sprite.scale.set(1.5, 1.5, 1.5)
-  this.sprite.material.alphaTest = 0.1
-  this.scene.add(this.sprite)
+  text = this.generateText("SPRITE", true, {
+    align: textAlign.center,
+    shadowColor: 'rgba(0, 0, 0, 0.2)',
+    shadowBlur: 3,
+    shadowOffsetX: 2,
+    shadowOffsetY: 2
+  })
+  text.position.set(0,300,0)
+
+  text = this.generateText("S LEFT", true, { align: textAlign.left })
+  text.position.set(0,400,0)
+
+  text = this.generateText("S RIGHT", true, { align: textAlign.right })
+  text.position.set(0,400,0)
 
   var i = 0
   setInterval(() => {
-    this.text.text = "CENTER" + i
-    this.text2.text = "LEFT" + i
-    this.text3.text = "RIGHT" + i
-    this.sprite.text = "SPRITE " + i
+    for (var j = 0; j < this.texts.length; j++) {
+      this.texts[j].text = this.texts[j].originalText + " " + i
+    }
     i++
   }, 50)
 
   window.addEventListener('resize', this.onResize.bind(this), false)
   window.addEventListener('mousemove', this.onMouseMove.bind(this), false)
+}
+
+Application.prototype.generateText = function(text, isSprite, otherOptions) {
+  var textClass = isSprite ? SpriteText2D : MeshText2D;
+  var obj = new textClass(
+    text, 
+    Object.assign({ font: '30px Arial', fillStyle: '#000000' }, otherOptions)
+  )
+  obj.originalText = text
+  obj.material.alphaTest = 0.1
+  obj.scale.set(1.5,1.5,1.5)
+  this.texts.push(obj)
+  this.scene.add(obj)
+  return obj
 }
 
 Application.prototype.onResize = function (e) {
@@ -90,9 +103,10 @@ Application.prototype.onMouseMove = function (event) {
 }
 
 Application.prototype.loop = function () {
-  this.text.rotation.y += 0.010
-  this.text2.rotation.y += 0.015
-  this.text3.rotation.y += 0.02
+  for (var j = 0; j < this.texts.length; j++) {
+    var text = this.texts[j]
+    text.rotation.y += text.position.y * 0.00001
+  }
 
   // update the picking ray with the camera and mouse position
   raycaster.setFromCamera( mouse, this.camera );

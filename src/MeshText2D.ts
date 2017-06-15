@@ -18,14 +18,7 @@ export class MeshText2D extends Text2D {
   updateText(): void {
     this.cleanUp() // cleanup previous texture
 
-    this.canvas.drawText(this._text, {
-      font: this._font,
-      fillStyle: this._fillStyle,
-      shadowBlur: this._shadowBlur,
-      shadowColor: this._shadowColor,
-      shadowOffsetX: this._shadowOffsetX,
-      shadowOffsetY: this._shadowOffsetY,
-    })
+    this.canvas.drawText(this._text, this.textOptions)
 
     this.texture = new THREE.Texture(this.canvas.canvas);
     this.texture.needsUpdate = true;
@@ -44,9 +37,6 @@ export class MeshText2D extends Text2D {
       this.mesh = new THREE.Mesh(this.geometry, this.material);
       this.add(this.mesh)
     }
-
-    this.mesh.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
-    this.mesh.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
 
     // manually update geometry vertices
     this.geometry.vertices[0].x = this.geometry.vertices[2].x = -this.canvas.width/2

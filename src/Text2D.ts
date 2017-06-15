@@ -55,6 +55,20 @@ export abstract class Text2D extends THREE.Object3D {
     this.text = text;
   }
 
+  protected get textOptions(): TextOptions {
+    return {
+      font: this._font,
+      fillStyle: this._fillStyle,
+      align: this.align,
+      side: this.side,
+      antialias: this.antialias,
+      shadowBlur: this._shadowBlur,
+      shadowColor: this._shadowColor,
+      shadowOffsetX: this._shadowOffsetX,
+      shadowOffsetY: this._shadowOffsetY,
+    };
+  }
+
   abstract raycast(): void;
   abstract updateText(): void;
 
