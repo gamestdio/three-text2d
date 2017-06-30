@@ -53,7 +53,6 @@ export class CanvasText {
     let xPos = 0
     let yPos = 0
     if (ctxOptions.alignmentMethod == "texture") {
-      console.log("Align texture");
       // We have to adjust the align options from the normal options used for
       // child alignemnt
       let alignX = 1 - (ctxOptions.align.x / 2 + 0.5)
