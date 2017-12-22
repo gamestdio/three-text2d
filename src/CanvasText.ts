@@ -30,8 +30,8 @@ export class CanvasText {
     this.textWidth = Math.ceil(this.ctx.measureText(text).width)
     this.textHeight = getFontHeight(this.ctx.font)
 
-    this.canvas.width = THREE.Math.nextPowerOfTwo(this.textWidth)
-    this.canvas.height = THREE.Math.nextPowerOfTwo(this.textHeight)
+    this.canvas.width = THREE.Math.ceilPowerOfTwo(this.textWidth)
+    this.canvas.height = THREE.Math.ceilPowerOfTwo(this.textHeight)
 
     this.ctx.font = ctxOptions.font
     this.ctx.fillStyle = ctxOptions.fillStyle
