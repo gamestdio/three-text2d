@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@types/three@^0.83.3":
-  version "0.83.5"
-  resolved "https://registry.npmjs.org/@types/three/-/three-0.83.5.tgz#53cfe5e103f16d460aea9a7e0c5680a7211cc0be"
+"@types/three@^0.91.7":
+  version "0.91.7"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.91.7.tgz#5673dd3eb23c034d69ca93992048bc0d57bc6262"
   dependencies:
     "@types/webvr-api" "*"
 

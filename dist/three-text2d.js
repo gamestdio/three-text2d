@@ -1,41 +1,41 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -46,7 +46,7 @@
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -55,13 +55,13 @@
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
@@ -78,15 +78,16 @@ module.exports = THREE;
 
 "use strict";
 
-var THREE = __webpack_require__(0);
+Object.defineProperty(exports, "__esModule", { value: true });
+var three_1 = __webpack_require__(0);
 exports.textAlign = {
-    center: new THREE.Vector2(0, 0),
-    left: new THREE.Vector2(1, 0),
-    topLeft: new THREE.Vector2(1, -1),
-    topRight: new THREE.Vector2(-1, -1),
-    right: new THREE.Vector2(-1, 0),
-    bottomLeft: new THREE.Vector2(1, 1),
-    bottomRight: new THREE.Vector2(-1, 1),
+    center: new three_1.Vector2(0, 0),
+    left: new three_1.Vector2(1, 0),
+    topLeft: new three_1.Vector2(1, -1),
+    topRight: new three_1.Vector2(-1, -1),
+    right: new three_1.Vector2(-1, 0),
+    bottomLeft: new three_1.Vector2(1, 1),
+    bottomRight: new three_1.Vector2(-1, 1),
 };
 var fontHeightCache = {};
 function getFontHeight(fontStyle) {
@@ -113,11 +114,17 @@ exports.getFontHeight = getFontHeight;
 
 "use strict";
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var utils_1 = __webpack_require__(1);
 var CanvasText_1 = __webpack_require__(5);
@@ -208,11 +215,17 @@ exports.Text2D = Text2D;
 
 "use strict";
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var Text2D_1 = __webpack_require__(2);
 var MeshText2D = (function (_super) {
@@ -270,11 +283,17 @@ exports.MeshText2D = MeshText2D;
 
 "use strict";
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var Text2D_1 = __webpack_require__(2);
 var SpriteText2D = (function (_super) {
@@ -321,6 +340,7 @@ exports.SpriteText2D = SpriteText2D;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var utils_1 = __webpack_require__(1);
 var CanvasText = (function () {
@@ -345,8 +365,8 @@ var CanvasText = (function () {
         this.ctx.font = ctxOptions.font;
         this.textWidth = Math.ceil(this.ctx.measureText(text).width);
         this.textHeight = utils_1.getFontHeight(this.ctx.font);
-        this.canvas.width = THREE.Math.nextPowerOfTwo(this.textWidth);
-        this.canvas.height = THREE.Math.nextPowerOfTwo(this.textHeight);
+        this.canvas.width = THREE.Math.ceilPowerOfTwo(this.textWidth);
+        this.canvas.height = THREE.Math.ceilPowerOfTwo(this.textHeight);
         this.ctx.font = ctxOptions.font;
         this.ctx.fillStyle = ctxOptions.fillStyle;
         this.ctx.textAlign = 'left';
@@ -369,6 +389,7 @@ exports.CanvasText = CanvasText;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var SpriteText2D_1 = __webpack_require__(4);
 exports.SpriteText2D = SpriteText2D_1.SpriteText2D;
 var MeshText2D_1 = __webpack_require__(3);
