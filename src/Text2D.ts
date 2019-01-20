@@ -32,7 +32,6 @@ export abstract class Text2D extends THREE.Object3D {
   protected _shadowOffsetY: number;
 
   protected canvas: CanvasText;
-  protected geometry: THREE.Geometry | THREE.BufferGeometry;
 
   constructor(text = '', options: TextOptions = {}) {
     super();

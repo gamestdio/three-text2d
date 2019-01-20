@@ -31,7 +31,6 @@ export class SpriteText2D extends Text2D{
 
     if (!this.sprite) {
       this.sprite = new THREE.Sprite( this.material )
-      this.geometry = this.sprite.geometry
       this.add(this.sprite)
     }
 
