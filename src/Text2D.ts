@@ -37,6 +37,7 @@ export abstract class Text2D extends THREE.Object3D {
   constructor(text = '', options: TextOptions = {}) {
     super();
 
+    this._align = new THREE.Vector2();
     this._font = options.font || '30px Arial';
     this._fillStyle = options.fillStyle || '#FFFFFF';
 
@@ -93,7 +94,7 @@ export abstract class Text2D extends THREE.Object3D {
   }
 
   set align(value: THREE.Vector2) {
-    this._align = value;
+    this._align.copy(value);
   }
 
   cleanUp () {
