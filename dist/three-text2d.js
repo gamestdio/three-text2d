@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("THREE"));
+	else if(typeof define === 'function' && define.amd)
+		define(["THREE"], factory);
+	else if(typeof exports === 'object')
+		exports["THREE_Text2D"] = factory(require("THREE"));
+	else
+		root["THREE_Text2D"] = factory(root["THREE"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -6,9 +16,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -70,7 +80,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = THREE;
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
@@ -128,12 +138,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var utils_1 = __webpack_require__(1);
 var CanvasText_1 = __webpack_require__(5);
-var Text2D = (function (_super) {
+var Text2D = /** @class */ (function (_super) {
     __extends(Text2D, _super);
     function Text2D(text, options) {
         if (text === void 0) { text = ''; }
         if (options === void 0) { options = {}; }
         var _this = _super.call(this) || this;
+        _this._align = new THREE.Vector2();
         _this._font = options.font || '30px Arial';
         _this._fillStyle = options.fillStyle || '#FFFFFF';
         _this._shadowColor = options.shadowColor || 'rgba(0, 0, 0, 0)';
@@ -193,6 +204,16 @@ var Text2D = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Text2D.prototype, "align", {
+        get: function () {
+            return this._align;
+        },
+        set: function (value) {
+            this._align.copy(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
     Text2D.prototype.cleanUp = function () {
         if (this.texture) {
             this.texture.dispose();
@@ -228,7 +249,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var Text2D_1 = __webpack_require__(2);
-var MeshText2D = (function (_super) {
+var MeshText2D = /** @class */ (function (_super) {
     __extends(MeshText2D, _super);
     function MeshText2D(text, options) {
         if (text === void 0) { text = ''; }
@@ -296,7 +317,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var Text2D_1 = __webpack_require__(2);
-var SpriteText2D = (function (_super) {
+var SpriteText2D = /** @class */ (function (_super) {
     __extends(SpriteText2D, _super);
     function SpriteText2D() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -322,13 +343,27 @@ var SpriteText2D = (function (_super) {
         }
         if (!this.sprite) {
             this.sprite = new THREE.Sprite(this.material);
-            this.geometry = this.sprite.geometry;
             this.add(this.sprite);
         }
         this.sprite.scale.set(this.canvas.width, this.canvas.height, 1);
-        this.sprite.position.x = ((this.canvas.width / 2) - (this.canvas.textWidth / 2)) + ((this.canvas.textWidth / 2) * this.align.x);
-        this.sprite.position.y = (-this.canvas.height / 2) + ((this.canvas.textHeight / 2) * this.align.y);
+        this.updateAlign();
     };
+    SpriteText2D.prototype.updateAlign = function () {
+        if (this.sprite) {
+            this.sprite.center.x = this._align.x * this.canvas.textWidth / this.canvas.width;
+            this.sprite.center.y = 1 - (1 - this._align.y) * this.canvas.textHeight / this.canvas.height;
+        }
+    };
+    Object.defineProperty(SpriteText2D.prototype, "align", {
+        set: function (value) {
+            this._align.copy(value);
+            this._align.multiplyScalar(0.5);
+            this._align.addScalar(0.5);
+            this.updateAlign();
+        },
+        enumerable: true,
+        configurable: true
+    });
     return SpriteText2D;
 }(Text2D_1.Text2D));
 exports.SpriteText2D = SpriteText2D;
@@ -343,7 +378,7 @@ exports.SpriteText2D = SpriteText2D;
 Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = __webpack_require__(0);
 var utils_1 = __webpack_require__(1);
-var CanvasText = (function () {
+var CanvasText = /** @class */ (function () {
     function CanvasText() {
         this.textWidth = null;
         this.textHeight = null;
@@ -400,3 +435,4 @@ exports.textAlign = utils_1.textAlign;
 
 /***/ })
 /******/ ]);
+});
