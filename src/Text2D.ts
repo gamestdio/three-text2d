@@ -17,12 +17,12 @@ export interface TextOptions {
 
 export abstract class Text2D extends THREE.Object3D {
 
-  public align: THREE.Vector2;
   public side: number;
   public antialias: boolean;
   public texture: THREE.Texture;
   public material: THREE.MeshBasicMaterial | THREE.SpriteMaterial;
 
+  protected _align: THREE.Vector2;
   protected _font: string;
   protected _fillStyle: string;
   protected _text: string;
@@ -86,6 +86,14 @@ export abstract class Text2D extends THREE.Object3D {
       this._fillStyle = value;
       this.updateText();
     }
+  }
+
+  get align() {
+    return this._align;
+  }
+
+  set align(value: THREE.Vector2) {
+    this._align = value;
   }
 
   cleanUp () {
