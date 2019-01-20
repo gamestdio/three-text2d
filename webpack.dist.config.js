@@ -6,7 +6,9 @@ module.exports = {
 
   output: {
     filename: 'three-text2d.js',
-    path: path.join(__dirname, "dist")
+    path: path.join(__dirname, "dist"),
+    library: 'THREE_Text2D',
+    libraryTarget: 'umd'
   },
 
   resolve: {
