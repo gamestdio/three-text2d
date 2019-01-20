@@ -47,6 +47,8 @@ export class SpriteText2D extends Text2D{
 
   set align(value: THREE.Vector2) {
     this._align = value;
+    this._align.multiplyScalar(0.5);
+    this._align.addScalar(0.5);
     this.updateAlign();
   }
 
