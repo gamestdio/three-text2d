@@ -36,8 +36,21 @@ export class SpriteText2D extends Text2D{
 
     this.sprite.scale.set(this.canvas.width, this.canvas.height, 1)
 
-    this.sprite.position.x = ((this.canvas.width/2) - (this.canvas.textWidth/2)) + ((this.canvas.textWidth/2) * this.align.x)
-    this.sprite.position.y = (- this.canvas.height/2) + ((this.canvas.textHeight/2) * this.align.y)
+    this.updateAlign();
+  }
+
+  updateAlign() {
+    if (this.sprite) {
+      this.sprite.center.x = this._align.x * this.canvas.textWidth / this.canvas.width;
+      this.sprite.center.y = 1 - (1 - this._align.y) * this.canvas.textHeight / this.canvas.height;
+    }
+  }
+
+  set align(value: THREE.Vector2) {
+    this._align.copy(value);
+    this._align.multiplyScalar(0.5);
+    this._align.addScalar(0.5);
+    this.updateAlign();
   }
 
 }
