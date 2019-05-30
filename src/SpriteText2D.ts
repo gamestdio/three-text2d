@@ -1,5 +1,6 @@
 import THREE = require("three");
 import { Text2D } from "./Text2D";
+import { SpriteMaterial } from "three";
 
 export class SpriteText2D extends Text2D{
 
@@ -30,7 +31,7 @@ export class SpriteText2D extends Text2D{
     }
 
     if (!this.sprite) {
-      this.sprite = new THREE.Sprite( this.material )
+      this.sprite = new THREE.Sprite( this.material as SpriteMaterial )
       this.add(this.sprite)
     }
 

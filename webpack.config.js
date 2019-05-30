@@ -10,7 +10,7 @@ module.exports = {
     extensions: ['.webpack.js', '.ts', '.js']
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.tsx?$/, loader: 'ts-loader' }
     ]
   }

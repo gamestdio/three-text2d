@@ -1,6 +1,6 @@
 {
   "name": "three-text2d",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Render texture from canvas into THREE's Mesh or Sprite.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -27,10 +27,11 @@
     "@types/three": "^0.93.15",
     "three": "*",
     "three-orbit-controls": "^72.0.0",
-    "ts-loader": "^2.0.0",
-    "typescript": "^2.1.6",
-    "webpack": "^2.2.0-rc.2",
-    "webpack-dev-server": "^2.2.0-rc.0"
+    "ts-loader": "^6.0.1",
+    "typescript": "^3.5.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   },
   "peerDependencies": {
     "@types/three": "*",
