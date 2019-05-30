@@ -41,8 +41,8 @@ export class SpriteText2D extends Text2D{
 
   updateAlign() {
     if (this.sprite) {
-      this.sprite.center.x = this._align.x * this.canvas.textWidth / this.canvas.width;
-      this.sprite.center.y = 1 - (1 - this._align.y) * this.canvas.textHeight / this.canvas.height;
+      this.sprite.center.x = (1 - this._align.x) * this.canvas.textWidth / this.canvas.width;
+      this.sprite.center.y = 1 - this._align.y * this.canvas.textHeight / this.canvas.height;
     }
   }
 
