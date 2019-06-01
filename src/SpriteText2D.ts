@@ -13,7 +13,8 @@ export class SpriteText2D extends Text2D{
   updateText() {
     this.canvas.drawText(this._text, {
       font: this._font,
-      fillStyle: this._fillStyle
+      fillStyle: this._fillStyle,
+      lineHeight: this._lineHeight
     })
 
     // cleanup previous texture
