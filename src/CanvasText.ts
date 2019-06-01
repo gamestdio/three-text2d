@@ -23,26 +23,34 @@ export class CanvasText {
   get height () { return this.canvas.height }
 
   drawText (text: string, ctxOptions: TextOptions) {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.font = ctxOptions.font
 
-    this.textWidth = Math.ceil(this.ctx.measureText(text).width)
-    this.textHeight = getFontHeight(this.ctx.font)
+    const lineHeight = getFontHeight(ctxOptions.font);
+    const lines = text.split("\n");
+    this.textWidth = Math.max.apply(null, lines.map(line => Math.ceil(this.ctx.measureText(line).width)));
+    this.textHeight = lineHeight + lineHeight * ctxOptions.lineHeight * (lines.length - 1);
 
     this.canvas.width = THREE.Math.ceilPowerOfTwo(this.textWidth)
     this.canvas.height = THREE.Math.ceilPowerOfTwo(this.textHeight)
 
     this.ctx.font = ctxOptions.font
+
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     this.ctx.fillStyle = ctxOptions.fillStyle
-    this.ctx.textAlign = 'left';
+    if (ctxOptions.align.x === 1) this.ctx.textAlign = 'left';
+    else if (ctxOptions.align.x === 0) this.ctx.textAlign = 'center';
+    else this.ctx.textAlign = 'right';
     this.ctx.textBaseline = 'top';
     this.ctx.shadowColor = ctxOptions.shadowColor;
     this.ctx.shadowBlur = ctxOptions.shadowBlur;
     this.ctx.shadowOffsetX = ctxOptions.shadowOffsetX;
     this.ctx.shadowOffsetY = ctxOptions.shadowOffsetY;
-    this.ctx.fillText(text, 0, 0);
 
+    const x = this.textWidth * (0.5 - ctxOptions.align.x * 0.5);
+    for (let i = 0; i < lines.length; i++) {
+      this.ctx.fillText(lines[i], x, lineHeight * ctxOptions.lineHeight * i);
+    }
     return this.canvas
   }
 

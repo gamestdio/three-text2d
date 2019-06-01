@@ -13,6 +13,7 @@ export interface TextOptions {
   shadowBlur?: number;
   shadowOffsetX?: number;
   shadowOffsetY?: number;
+  lineHeight?: number;
 }
 
 export abstract class Text2D extends THREE.Object3D {
@@ -30,6 +31,7 @@ export abstract class Text2D extends THREE.Object3D {
   protected _shadowBlur: number;
   protected _shadowOffsetX: number;
   protected _shadowOffsetY: number;
+  protected _lineHeight: number;
 
   protected canvas: CanvasText;
 
@@ -44,6 +46,7 @@ export abstract class Text2D extends THREE.Object3D {
     this._shadowBlur = options.shadowBlur || 0;
     this._shadowOffsetX = options.shadowOffsetX || 0;
     this._shadowOffsetY = options.shadowOffsetY || 0;
+    this._lineHeight = options.lineHeight || 1.2;
 
     this.canvas = new CanvasText()
 
