@@ -38,15 +38,18 @@ export class CanvasText {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.fillStyle = ctxOptions.fillStyle
-    this.ctx.textAlign = 'left';
+    if (ctxOptions.align.x === 1) this.ctx.textAlign = 'left';
+    else if (ctxOptions.align.x === 0) this.ctx.textAlign = 'center';
+    else this.ctx.textAlign = 'right';
     this.ctx.textBaseline = 'top';
     this.ctx.shadowColor = ctxOptions.shadowColor;
     this.ctx.shadowBlur = ctxOptions.shadowBlur;
     this.ctx.shadowOffsetX = ctxOptions.shadowOffsetX;
     this.ctx.shadowOffsetY = ctxOptions.shadowOffsetY;
 
+    const x = this.textWidth * (0.5 - ctxOptions.align.x * 0.5);
     for (let i = 0; i < lines.length; i++) {
-      this.ctx.fillText(lines[i], 0, lineHeight * ctxOptions.lineHeight * i);
+      this.ctx.fillText(lines[i], x, lineHeight * ctxOptions.lineHeight * i);
     }
     return this.canvas
   }

@@ -14,7 +14,8 @@ export class SpriteText2D extends Text2D{
     this.canvas.drawText(this._text, {
       font: this._font,
       fillStyle: this._fillStyle,
-      lineHeight: this._lineHeight
+      lineHeight: this._lineHeight,
+      align: this.align
     })
 
     // cleanup previous texture
@@ -43,15 +44,17 @@ export class SpriteText2D extends Text2D{
 
   updateAlign() {
     if (this.sprite) {
-      this.sprite.center.x = (1 - this._align.x) * this.canvas.textWidth / this.canvas.width;
-      this.sprite.center.y = 1 - this._align.y * this.canvas.textHeight / this.canvas.height;
+      this.sprite.center.x = (0.5 - this._align.x * 0.5) * this.canvas.textWidth / this.canvas.width;
+      this.sprite.center.y = 1 - (this._align.y * 0.5 + 0.5) * this.canvas.textHeight / this.canvas.height;
     }
+  }
+
+  get align() {
+    return this._align;
   }
 
   set align(value: THREE.Vector2) {
     this._align.copy(value);
-    this._align.multiplyScalar(0.5);
-    this._align.addScalar(0.5);
     this.updateAlign();
   }
 
