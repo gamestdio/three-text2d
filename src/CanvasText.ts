@@ -26,12 +26,13 @@ export class CanvasText {
     this.ctx.font = ctxOptions.font
 
     const lineHeight = getFontHeight(ctxOptions.font);
-    const lines = text.split("\n");
+    const lines = (text || "").toString().split("\n");
     this.textWidth = Math.max.apply(null, lines.map(line => Math.ceil(this.ctx.measureText(line).width)));
     this.textHeight = lineHeight + lineHeight * ctxOptions.lineHeight * (lines.length - 1);
 
-    this.canvas.width = THREE.Math.ceilPowerOfTwo(this.textWidth)
-    this.canvas.height = THREE.Math.ceilPowerOfTwo(this.textHeight)
+    // 2 = prevent canvas being 0 size when using empty / null text
+    this.canvas.width = Math.max(2, THREE.Math.ceilPowerOfTwo(this.textWidth));
+    this.canvas.height = Math.max(2, THREE.Math.ceilPowerOfTwo(this.textHeight));
 
     this.ctx.font = ctxOptions.font
 
