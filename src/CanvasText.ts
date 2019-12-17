@@ -31,12 +31,17 @@ export class CanvasText {
     this.textHeight = lineHeight + lineHeight * ctxOptions.lineHeight * (lines.length - 1);
 
     // 2 = prevent canvas being 0 size when using empty / null text
-    this.canvas.width = Math.max(2, THREE.Math.ceilPowerOfTwo(this.textWidth));
-    this.canvas.height = Math.max(2, THREE.Math.ceilPowerOfTwo(this.textHeight));
+    this.canvas.width = Math.max(2, THREE.Math.ceilPowerOfTwo(this.textWidth + (2 * ctxOptions.horizontalPadding)));
+    this.canvas.height = Math.max(2, THREE.Math.ceilPowerOfTwo(this.textHeight + (2 * ctxOptions.verticalPadding)));
 
     this.ctx.font = ctxOptions.font
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    if (ctxOptions.backgroundColor) {
+      this.ctx.fillStyle = ctxOptions.backgroundColor;
+      this.ctx.fillRect(0, 0, this.textWidth + (2 * ctxOptions.horizontalPadding), this.textHeight + (2 * ctxOptions.verticalPadding));
+    }
 
     this.ctx.fillStyle = ctxOptions.fillStyle
     if (ctxOptions.align.x === 1) this.ctx.textAlign = 'left';
@@ -49,8 +54,9 @@ export class CanvasText {
     this.ctx.shadowOffsetY = ctxOptions.shadowOffsetY;
 
     const x = this.textWidth * (0.5 - ctxOptions.align.x * 0.5);
+    const y = 0.5 * ((lineHeight * ctxOptions.lineHeight) - lineHeight);
     for (let i = 0; i < lines.length; i++) {
-      this.ctx.fillText(lines[i], x, lineHeight * ctxOptions.lineHeight * i);
+      this.ctx.fillText(lines[i], x + ctxOptions.horizontalPadding, (lineHeight * ctxOptions.lineHeight * i) + ctxOptions.verticalPadding + y);
     }
     return this.canvas
   }
