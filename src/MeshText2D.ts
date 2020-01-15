@@ -26,7 +26,10 @@ export class MeshText2D extends Text2D {
       shadowOffsetX: this._shadowOffsetX,
       shadowOffsetY: this._shadowOffsetY,
       lineHeight: this._lineHeight,
-      align: this.align
+      align: this.align,
+      backgroundColor: this._backgroundColor,
+      horizontalPadding: this._horizontalPadding,
+      verticalPadding: this._verticalPadding
     })
 
     this.texture = new THREE.Texture(this.canvas.canvas);
