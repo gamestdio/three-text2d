@@ -1,6 +1,6 @@
 {
   "name": "three-text2d",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Render texture from canvas into THREE's Mesh or Sprite.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
